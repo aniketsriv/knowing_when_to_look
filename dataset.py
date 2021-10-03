@@ -1,28 +1,25 @@
 # Imports
-import os  # when loading file paths
-import pandas as pd  # for lookup in annotation file "captions.txt"
-import spacy  # for tokenizer
 import torch
 from torch.nn.utils.rnn import pad_sequence  # for padding
 from torch.utils.data import DataLoader, Dataset
+import os  # when loading file paths
+import pandas as pd  # for lookup in annotation file "captions.txt"
+import spacy  # for tokenizer
 from PIL import Image  # Load img
 
 # Tokenizer
 spacy_eng = spacy.load("en")
-
-
 class Vocabulary:
     def __init__(self, freq_threshold):
         self.itos = {0: "<PAD>", 1: "<SOS>", 2: "<EOS>", 3: "<UNK>"}
         self.stoi = {"<PAD>": 0, "<SOS>": 1, "<EOS>": 2, "<UNK>": 3}
         self.freq_threshold = freq_threshold
 
-    def __len__(self):
-        return len(self.itos)
-
     @staticmethod
     def tokenizer_eng(text):
         return [tok.text.lower() for tok in spacy_eng.tokenizer(text)]
+    def __len__(self):
+        return len(self.itos)
 
     def build_vocabulary(self, sentence_list):
         frequencies = {}
