@@ -12,7 +12,7 @@ spacy_eng = spacy.load("en")
 class Vocabulary:
     def __init__(self, freq_threshold):
         self.itos = {0: "<PAD>", 1: "<SOS>", 2: "<EOS>", 3: "<UNK>"}
-        self.stoi = {"<PAD>": 0, "<SOS>": 1, "<EOS>": 2, "<UNK>": 3}
+        self.stoi = {"<UNK>": 3,  "<EOS>": 2, "<SOS>": 1, "<PAD>": 0}
         self.freq_threshold = freq_threshold
 
     @staticmethod
@@ -21,6 +21,10 @@ class Vocabulary:
     def __len__(self):
         return len(self.itos)
 
+    
+    def numericalize(self, text):
+        tokenized_text = self.tokenizer_eng(text)
+        
     def build_vocabulary(self, sentence_list):
         frequencies = {}
         idx = 4
@@ -36,9 +40,6 @@ class Vocabulary:
                     self.stoi[word] = idx
                     self.itos[idx] = word
                     idx += 1
-
-    def numericalize(self, text):
-        tokenized_text = self.tokenizer_eng(text)
 
         return [
             self.stoi[token] if token in self.stoi else self.stoi["<UNK>"]
