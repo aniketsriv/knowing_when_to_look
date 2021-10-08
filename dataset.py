@@ -11,20 +11,22 @@ from PIL import Image  # Load img
 spacy_eng = spacy.load("en")
 class Vocabulary:
     def __init__(self, freq_threshold):
+
         self.itos = {0: "<PAD>", 1: "<SOS>", 2: "<EOS>", 3: "<UNK>"}
         self.stoi = {"<UNK>": 3,  "<EOS>": 2, "<SOS>": 1, "<PAD>": 0}
         self.freq_threshold = freq_threshold
 
     @staticmethod
-    def tokenizer_eng(text):
-        return [tok.text.lower() for tok in spacy_eng.tokenizer(text)]
     def __len__(self):
         return len(self.itos)
 
+    def tokenizer_eng(text):
+        return [tok.text.lower() for tok in spacy_eng.tokenizer(text)]
     
     def numericalize(self, text):
         tokenized_text = self.tokenizer_eng(text)
         
+
     def build_vocabulary(self, sentence_list):
         frequencies = {}
         idx = 4
