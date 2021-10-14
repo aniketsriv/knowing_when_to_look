@@ -45,16 +45,14 @@ class Vocabulary:
 
         return [
             self.stoi[token] if token in self.stoi else self.stoi["<UNK>"]
-            for token in tokenized_text
-                ]
-
+            for token in tokenized_text]
 
 class FlickrDataset(Dataset):
     def __init__(self, root_dir, captions_file, transform=None, freq_threshold=5):
+        self.transform = transform
         self.root_dir = root_dir
         self.df = pd.read_csv(captions_file)
-        self.transform = transform
-
+        
         # Get img, caption columns
         self.imgs = self.df["image"]
         self.captions = self.df["caption"]
