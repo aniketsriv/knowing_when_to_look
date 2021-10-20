@@ -5,7 +5,7 @@ from torch.utils.data import DataLoader, Dataset
 import os  # when loading file paths
 import pandas as pd  # for lookup in annotation file "captions.txt"
 import spacy  # for tokenizer
-from PIL import Image  # Load img
+from PIL import Image  # Load image 
 
 # Tokenizer
 spacy_eng = spacy.load("en")
