@@ -1,7 +1,7 @@
 # Imports
 import torch
 from torch.nn.utils.rnn import pad_sequence  # for padding
-from torch.utils.data import DataLoader, Dataset
+from torch.utils.data import DataLoader, Dataset #Importing dataset
 import os  # when loading file paths
 import pandas as pd  # for lookup in annotation file "captions.txt"
 import spacy  # for tokenizer
@@ -22,7 +22,7 @@ class Vocabulary:
                      "<PAD>": 0}
         
         self.freq_threshold = freq_threshold
-
+     
     @staticmethod
     def __len__(self):
         return len(self.itos)
