@@ -86,8 +86,8 @@ class FlickrDataset(Dataset):
 
 
 class MyCollate:
-    def __init__(self, pad_idx):
-        self.pad_idx = pad_idx
+    def __init__(self, pad_ind):
+        self.pad_idx = pad_ind
 
     def __call__(self, batch):
         imgs = [item[0].unsqueeze(0) for item in batch]
