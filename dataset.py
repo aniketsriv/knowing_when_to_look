@@ -30,8 +30,8 @@ class Vocabulary:
     def numericalize(self, text):
         tokenized_text = self.tokenizer_eng(text)
     
-     def tokenizer_eng(text):
-        return [tok.text.lower() for tok in spacy_eng.tokenizer(text)]
+     def tokenizer_eng(txt):
+        return [tok.txt.lower() for tok in spacy_eng.tokenizer(txt)]
 
     def build_vocabulary(self, sentence_list):
         frequencies = {}
